@@ -1,0 +1,15 @@
+name: HM
+version: '${project.version}'
+main: com.hm.plugin.HMPlugin
+api-version: '1.21'
+author: HM
+description: Автоматические сообщения с разными типами вывода
+commands:
+  hm:
+    description: Главная команда плагина HM
+    usage: /hm <reload|test|list|next>
+    permission: hm.admin
+permissions:
+  hm.admin:
+    description: Доступ к админ-командам плагина
+    default: op
