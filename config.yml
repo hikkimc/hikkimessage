@@ -1,0 +1,118 @@
+# ╔═══════════════════════════════════════════════════════════════╗
+# ║                    HM Plugin - Конфигурация                   ║
+# ║         Автоматические сообщения с разными типами вывода      ║
+# ╚═══════════════════════════════════════════════════════════════╝
+
+# Интервал между сообщениями в секундах
+interval: 300
+
+# Режим перебора сообщений: random | sequential | single
+mode: random
+
+# Глобальный префикс (перед каждым сообщением)
+# Можно оставить пустым: ""
+prefix: "&8[&b✦&8] &r"
+
+# Глобальный суффикс (после каждого сообщения)
+suffix: ""
+
+# Звук при отправке сообщения
+sound:
+  enabled: true
+  type: ENTITY_EXPERIENCE_ORB_PICKUP
+  volume: 0.5
+  pitch: 1.0
+
+# ═══════════════════════════════════════════════════════════════
+# Сообщения
+# Каждое сообщение имеет уникальное название (ключ)
+#
+# Доступные типы (type):
+#   message   — обычный чат (text может быть строкой или списком строк)
+#   title     — Title экран (text = title, subtitle = subtitle)
+#   subtitle  — Только subtitle (text = subtitle)
+#   actionbar — ActionBar над хотбаром
+#   bossbar   — BossBar сверху экрана
+#
+# Общие параметры для всех типов:
+#   text      — текст сообщения (строка или список строк)
+#   prefix    — префикс ТОЛЬКО для этого сообщения (переопределяет глобальный)
+#   suffix    — суффикс ТОЛЬКО для этого сообщения (переопределяет глобальный)
+#   sound     — переопределить звук для этого сообщения
+#
+# Параметры для title:
+#   duration  — сколько секунд держать title (по умолчанию 3)
+#   fade-in   — время появления в тиках (по умолчанию 10)
+#   fade-out  — время исчезновения в тиках (по умолчанию 10)
+#   subtitle  — текст subtitle (можно использовать градиенты)
+#
+# Параметры для bossbar:
+#   duration  — сколько секунд показывать (по умолчанию 5)
+#   color     — цвет полоски: PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE
+#   style     — стиль: SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20
+#
+# Плейсхолдеры (доступны везде):
+#   {player}  — случайный онлайн-игрок
+#   {online}  — количество онлайн-игроков
+#   {max}     — максимальное количество слотов
+#   {time}    — текущее время сервера (HH:mm:ss)
+#   {date}    — текущая дата (dd.MM.yyyy)
+#   {tps}     — TPS сервера
+#   {world}   — случайный мир
+#
+# Форматирование:
+#   &0-&f, &k-&r  — стандартные цветовые коды
+#   <#RRGGBB>    — HEX цвета
+#   <gradient:#HEX1:#HEX2>текст</gradient> — градиент
+#   <bold>, <italic>, <underlined>, <strikethrough> — стили
+# ═══════════════════════════════════════════════════════════════
+
+messages:
+  welcome:
+    type: message
+    text:
+      - ""
+      - "&7Добро пожаловать на сервер, &a{player}&7!"
+      - "&7Используй &e/help &7для просмотра команд"
+      - ""
+
+  rules:
+    type: actionbar
+    text: "<gradient:#FF0000:#FFAA00>Не забудь прочитать правила сервера!</gradient>"
+
+  thanks:
+    type: title
+    text: "<gradient:#00FF00:#0088FF>Спасибо за игру!</gradient>"
+    subtitle: "&7Приходи к нам ещё"
+    duration: 4
+    fade-in: 15
+    fade-out: 15
+
+  online_info:
+    type: message
+    text: "&eСейчас онлайн: &a{online}&e/&c{max} &eигроков | TPS: &a{tps}"
+
+  discord:
+    type: actionbar
+    text: "&bЗаходи в наш Discord: &ediscord.gg/example"
+
+  event_soon:
+    type: bossbar
+    text: "&c⚠ Внимание! Ивент скоро начнётся! ⚠"
+    color: RED
+    style: SEGMENTED_10
+    duration: 10
+
+  vote:
+    type: message
+    text: "<gradient:#AA00FF:#FF00AA>Голосуй за сервер и получай награды!</gradient> &7/vote"
+
+  time_info:
+    type: title
+    text: "&b{time}"
+    subtitle: "&7{date}"
+    duration: 3
+
+  mini_info:
+    type: actionbar
+    text: "&7Мини-игры: &e/bedwars &7| &e/skywars &7| &e/duels"
